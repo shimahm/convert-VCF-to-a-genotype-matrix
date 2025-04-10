@@ -1,14 +1,28 @@
 # VCF Genotype Tools
 
-This repository contains tools to process VCF files into genotype matrices and perform imputation on missing values, designed to handle large datasets efficiently in chunks.
+This repository provides tools for processing large VCF (Variant Call Format) files into genotype matrices and imputing missing values. The pipeline is designed to efficiently handle large genomic datasets in **chunks**, minimizing memory usage.
 
-## Scripts
+## 🧬 Overview
 
-### 1. `vcf_to_genotype_matrix.py`
+The pipeline consists of **two main steps**:
 
-Converts a VCF file into a genotype matrix with 0, 1, 2 values representing homozygous reference, heterozygous, and homozygous alternate genotypes. It reads large files in chunks and outputs a `.csv` file.
+1. **Convert a VCF file to a genotype matrix**
+2. **Impute missing values (non-PAVs)**
 
-**Usage:**
+---
+
+## 🧩 Step 1: VCF to Genotype Matrix (`vcf_to_genotype_matrix.py`)
+
+This script processes a VCF file and converts it into a matrix of genotypes encoded as:
+
+- `0` = Homozygous Reference (`0/0`)
+- `1` = Heterozygous (`0/1`)
+- `2` = Homozygous Alternate (`1/1`)
+- `NaN` = Missing/Other values
+
+The script reads the VCF in **chunks** for memory efficiency and outputs a `.csv` file.
+
+### 🔧 Example usage:
 
 ```bash
 python vcf_to_genotype_matrix.py
